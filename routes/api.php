@@ -18,3 +18,4 @@ use App\Http\Controllers\MeetingController;
 
 Route::get ('/meetings', [MeetingController::class,'list']);
 Route::post('/meetings', [MeetingController::class,'create']);
+Route::post('/test', [MeetingController::class,'schedule']);

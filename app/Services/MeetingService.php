@@ -20,6 +20,8 @@ class MeetingService
 
         //save the meeting to the database
 
+
+        //return true if able to book, otherwise return false
         return true;
     }
 }
