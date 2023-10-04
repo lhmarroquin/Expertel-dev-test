@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MeetingRequest;
 use Illuminate\Http\Request;
 use App\Services\MeetingService;
 use App\Models\Meeting;
@@ -25,12 +26,19 @@ class MeetingController extends Controller
 
 
     //modify in any way you want
-    public function create(Request $request)
+    public function create(MeetingRequest $request)
     {
+
         $service = new MeetingService;
+        $meetingName = $request->input('meeting_name');
+        $startTime = $request->input('start_time');
+        $endTime = $request->input('end_time');
+        $users = $request->input('users');
+
+        $users = explode(',', $users);
 
         //add any parameters you wish
-        if ($service->scheduleMeeting())
+        if ($service->scheduleMeeting($meetingName, $startTime, $endTime, $users))
         {
             return response()->json(["message" => "The meeting has been booked"]);
         }
